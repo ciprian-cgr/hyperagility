@@ -2,8 +2,7 @@
 dist/
 .dist/
 # generated types
-.astro/
-
+.vitepress
 # dependencies
 node_modules/
 
