@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "A Guide to Sanity in AI-Driven Software Development",
   "scripts": {
-    "dev": "nue serve",
-    "build": "nue build"
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
   },
-  "dependencies": {
-    "nuekit": "latest"
+  "devDependencies": {
+    "vitepress": "^1.6.4",
+    "vue": "^3.5.26"
   }
 }
