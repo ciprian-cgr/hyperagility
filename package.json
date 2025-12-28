@@ -1,0 +1,12 @@
+{
+  "name": "hyperagility",
+  "version": "1.0.0",
+  "description": "A Guide to Sanity in AI-Driven Software Development",
+  "scripts": {
+    "dev": "nue serve",
+    "build": "nue build"
+  },
+  "dependencies": {
+    "nuekit": "latest"
+  }
+}
