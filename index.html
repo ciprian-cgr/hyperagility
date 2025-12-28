@@ -1,0 +1,190 @@
+<main>
+  <header class="hero">
+    <div class="container">
+      <h1>HyperAgility</h1>
+      <p class="subtitle">A Guide to Sanity in AI-Driven Software Development</p>
+    </div>
+  </header>
+
+  <article class="content container">
+    <section class="intro">
+      <p class="lead">AI is generating code faster than anyone can review it, and that wouldn't be an issue if the code was perfect, but most times it absolutely needs to be reviewed and changes have to be made.</p>
+      
+      <p>Using AI to build software is like using a slot machine for an IDE. And while there is some control over what is generated, using good prompts, creating the right context, having guardrails and strict coding standards in place, I haven't yet met a seasoned developer that can simply trust whatever was generated.</p>
+      
+      <p>However, there's no denying that things are moving at a pace never seen before and the whole engineering paradigm needs to change. Old practices simply don't work anymore and are just causing friction in the process. Everything we know about building software is based on entire teams grinding away at writing code and now, that grind is completely different and everyone is scrambling trying to figure out what and how to do. We've all been given power tools and now we need to figure out how to use them without hurting ourselves or others.</p>
+    </section>
+
+    <section class="problem">
+      <h2>Why the Traditional Process Fails</h2>
+      <p>Current development processes are built around the idea that writing code takes a long time and costs a lot of money. So we made everything else as efficient as possible to make sure we don't write more code than needed, to write maintainable code so we don't have to keep rewriting it, building MVPs and POCs to make sure the code is worth writing at all. Agile ceremonies, prioritization meetings, planning poker and the annoying t-shirt sizes, all aimed at making the development process predictable and efficient.</p>
+      
+      <p>But what do you do when the code itself is a commodity? When a feature can be written 6 times in a few minutes? Who needs estimations when every task is arguably size S?</p>
+      
+      <p>The paradigm shift is here, code is easy to create and we need to a new process around this reality. One might argue that the current process still works, it is built after all for efficiency everywhere else except code generation, and writing code faster should only make things better. Unfortunately the shift brings a whole new flavor of challenges. Developer confidence is at the top of the list. The times of 'LGTM' reviews is dead. Small iterative PRs are great for easy reviews, but with AI it feels like we're stifling productivity. On the other hand, the chance that a small code change can lead to a major production incident is constantly looming, we've all seen enough vibe coders complaining that Cursor deleted their entire hard drive or Claude removed their database to fix a schema migration issue.</p>
+    </section>
+
+    <section class="principles">
+      <h2>A New Process</h2>
+      <p class="section-intro">With the current process being turned upside down, we need new ways to deliver software. The reality is that building working, reliable software products has not gotten much easier, but it could be. Right now we are trying hard to push the square peg into the round hole.</p>
+      
+      <p class="section-intro">So let's adapt to the new velocity. Keep what works and change what doesn't.</p>
+
+      <div class="principle">
+        <h3>Bring Back Waterfall</h3>
+        <p>It might feel counterintuitive that the solution to hyperagility is what used to be regarded as the death of efficiency. And I'm not arguing that we need to plan out 6 months in advance, not even close to that. What we do need to take from waterfall design though is the extensive design of features before we start implementing. Basically, measure twice and cut once. And we should use the tools at our disposal to bring new dimensions to our specs. Similar to the Shaping process from DHH reshape book, use the advanced tools at our disposal to define the feature to the maximum extent. The biggest risk of not specific requirements is that AI will hallucinate something you most likely didn't want.</p>
+      </div>
+
+      <div class="principle">
+        <h3>Testing in the Age of Hyperagility</h3>
+        <p>Right after COVID, and as AI began taking a more central role in software development, companies started doing something very telling: they massively reduced or entirely removed QA teams from their organizations. The assumption seemed to be that AI would either take over large parts of QA, or that AI-augmented developers would move so fast that a separate QA function would no longer be necessary.</p>
+        
+        <p>In reality, the opposite has happened.</p>
+        
+        <p>With AI-generated code, <strong>testing has become more important than ever</strong>. Not testing in the narrow sense of manual UI checks or isolated feature validation, but testing at scale—specifically <strong>regression and integration testing</strong>. The reason is simple: AI dramatically increases the scope and blast radius of changes. A single pull request can now introduce thousands of lines of code, often spread across multiple repositories, touching far more of the system than a comparable change would have in the past.</p>
+        
+        <p>This shift also exposes another problem: <strong>maintainability</strong>. AI-generated code tends to introduce more complexity and spaghetti over time. Even when the code works, it is often harder to reason about, refactor, or safely modify. As a result, regression testing becomes the primary safety net for successful software delivery.</p>
+        
+        <p>Unit testing, as traditionally practiced, struggles in this environment. AI-generated unit tests are generally low quality, and chasing coverage metrics with AI typically produces a large volume of tests that slow down CI pipelines without providing meaningful protection. These tests rarely catch real issues and often become noise.</p>
+        
+        <p>In a hyper-agile development model, testing must move <strong>up the stack</strong>. The emphasis should be on regression and integration tests that validate system behavior rather than internal implementation details. Unit tests still have a place, but they should be used selectively and intentionally.</p>
+        
+        <p>In short, hyperagility demands a testing strategy that prioritizes <strong>behavioral correctness at scale</strong>, not brittle correctness at the function level.</p>
+      </div>
+
+      <div class="principle">
+        <h3>Architecture and Code Organization</h3>
+        <p>To maximize AI's ability to understand and modify a system quickly, one approach that works very well is organizing code <strong>by domains</strong>, and ensuring we use <strong>static types</strong> as much as possible (or type hints in languages that aren't statically typed).</p>
+        
+        <p>A domain-driven architecture supports the AI engineering model because the AI can rely on the <strong>semantic separation</strong> of the codebase: domains, domain models, and clear boundaries. In practice, this means the AI often only needs to read the specific domain(s) it has to touch, which can significantly reduce context size.</p>
+        
+        <p>Another key shift is that we sometimes need to <strong>prefer code duplication</strong> over complex reuse. Traditional architecture often optimizes for DRY principles and shared abstractions, but those abstractions create relationships across many code paths and files. For AI-driven development, that can be a net negative: the AI may need to read and reason across multiple files and layers before it can safely make a change.</p>
+        
+        <p>In hyperagility, architecture becomes a discipline of <strong>context optimization</strong>: reducing how much code the AI must "see" to make correct changes, even if that sometimes means accepting controlled duplication instead of complex indirection.</p>
+      </div>
+
+      <div class="principle">
+        <h3>Code Reviews in Hyperagility</h3>
+        <p>Code reviews are one of the biggest challenges—and pain points—in hyper-agile, AI-driven software development. A large part of this comes down to <strong>developer confidence</strong>. Developers still don't fully trust AI-generated code, and for good reason: it is often affected by scope creep, unintended security changes, broken code paths, and subtle behavioral regressions.</p>
+        
+        <p>The problem is scale. Reviewing 200 lines of code is manageable. Reviewing <strong>5,000 lines of AI-generated code</strong> is not. Traditional line-by-line review techniques simply do not work at this volume, which means <strong>code reviews themselves must be re-designed</strong>.</p>
+        
+        <p>In hyperagility, code reviews need to operate at a <strong>higher level of abstraction</strong>. The first step of a review should be a structured summary that surfaces the most critical aspects of the change:</p>
+        
+        <ul>
+          <li>Code quality and maintainability concerns</li>
+          <li>Data model changes</li>
+          <li>Behavioral changes</li>
+          <li>Changes to contracts between services, APIs, or interfaces</li>
+          <li>Major architectural shifts</li>
+        </ul>
+        
+        <p>In short, code reviews in hyperagility shift from <strong>exhaustive inspection</strong> to <strong>intention-driven, signal-based validation</strong>, keeping a human firmly in the loop while scaling to AI-level output.</p>
+      </div>
+
+      <div class="principle">
+        <h3>Code Quality Trade-offs</h3>
+        <p>In an AI-driven, hyper-agile development environment, <strong>code quality and code reviews become a conscious trade-off rather than an absolute goal</strong>. Traditional notions of code quality—perfect readability, elegant abstractions, or long-term maintainability—do not scale well with the velocity and frequency of AI-generated change. Software today is rarely written to remain untouched for months or years; it is continuously evolving.</p>
+        
+        <p>If a feature is implemented correctly, follows agreed standards, fulfills its requirements, and passes regression and integration tests, it should generally be considered acceptable—even if the implementation is not "beautiful" by traditional standards. Optimizing excessively for readability or stylistic perfection often slows teams down without delivering proportional value, especially when the code is likely to change again in the near future.</p>
+        
+        <p>As a result, code reviews should focus less on subjective implementation details and more on <strong>system-level correctness</strong>: ensuring nothing is broken, no unintended behavior is introduced, contracts remain intact, and requirements are met.</p>
+      </div>
+
+      <div class="principle">
+        <h3>Development Process and Pull Requests</h3>
+        <p>In terms of development process, hyper-agility favors a counterintuitive but effective approach: <strong>build large, complete features first</strong>, then iterate.</p>
+        
+        <p>Rather than splitting feature development into many small PRs, it is often preferable to implement an entire feature in a single, larger PR using a single, consistent AI context. This ensures that the initial implementation closely follows the original specifications, intent, and architectural guidelines. AI performs best when it can reason over a complete problem with stable context; breaking work into many small steps increases the risk of context loss and inconsistent decisions over time.</p>
+        
+        <p>Once the main feature is implemented, refinements, fixes, and improvements can be addressed through smaller, incremental commits. This preserves velocity while still allowing for correction and optimization.</p>
+        
+        <p>In short, the hyper-agile development process optimizes for <strong>context continuity first, refinement second</strong>—a reversal of many traditional best practices, driven by the realities of AI-assisted software development.</p>
+      </div>
+
+      <div class="principle">
+        <h3>Working in Teams</h3>
+        <p>While the use of AI in software engineering has become increasingly common, most development tools and workflows are still poorly adapted to <strong>team-based AI-assisted development</strong>. Many AI app builders and coding tools are optimized for individual productivity, not for coordinated work across multiple engineers.</p>
+        
+        <p>One major challenge is <strong>asymmetric velocity</strong>. Different team members achieve very different speeds depending on how effectively they use AI tools, which can lead to imbalance and coordination issues. Accountability also becomes more diffuse—AI can easily be blamed for mistakes, making it harder to reason about ownership and responsibility.</p>
+        
+        <p>Another growing problem is <strong>merge conflicts</strong>. Because AI can generate large volumes of code quickly, the scale of changes per PR increases significantly. To address this, AI itself should be used as part of the solution. One powerful approach is <strong>merge conflict prediction during feature shaping and PR creation</strong>.</p>
+        
+        <p>In practice, making AI work well in teams requires:</p>
+        
+        <ul>
+          <li>Clear and shared feature specifications</li>
+          <li>Strong guardrails and coding standards</li>
+          <li>Advanced PR review and merge conflict resolution workflows</li>
+          <li>Continuous communication during feature creation</li>
+        </ul>
+        
+        <p>Finally, maintaining a <strong>shared library of prompts</strong> for common tasks can greatly improve consistency. Hyperagility at scale is not just a tooling problem—it is a coordination problem.</p>
+      </div>
+
+      <div class="principle">
+        <h3>Feature Flags</h3>
+        <p>Building a major feature used to take weeks, sometimes even months. During that time, engineering teams would gradually get familiar with the feature as it evolved. One of the main reasons developer confidence is lower in AI-driven development is, somewhat paradoxically, <strong>velocity itself</strong>. Features can now be built in hours or days.</p>
+        
+        <p>This is where <strong>feature flags become essential</strong>.</p>
+        
+        <p>In a hyper-agile environment, you should not release a newly built, lightly exercised feature to your entire user base immediately. Even with thorough integration and regression testing and strong upfront planning, things can—and will—go wrong.</p>
+        
+        <p>By releasing features behind flags to a limited audience, teams can observe behavior in the wild, gather feedback, monitor metrics, and iterate safely—without betting the entire system or user base on a brand-new change. In hyperagility, feature flags are not a nice-to-have; they are a core mechanism for restoring confidence, enabling learning, and making extreme velocity sustainable.</p>
+      </div>
+
+      <div class="principle">
+        <h3>Eliminating Vagueness</h3>
+        <p>One of the biggest challenges in AI-assisted software development is not intent itself, but <strong>vagueness</strong>. When requirements, specifications, or instructions are unclear or underspecified, AI systems will naturally attempt to fill in the gaps. This often manifests as "creativity": adding functionality that was not requested, making assumptions about behavior, or even building features that were never intended—or that cannot realistically be supported.</p>
+        
+        <p>To achieve predictability, vagueness must be aggressively eliminated from the development process. This means being explicit not only about <em>what</em> needs to be built, but also:</p>
+        
+        <ul>
+          <li>how it should be built,</li>
+          <li>what constraints apply,</li>
+          <li>what is explicitly out of scope,</li>
+          <li>and what trade-offs are acceptable.</li>
+        </ul>
+        
+        <p>Eliminating vagueness is therefore a core requirement for reliable AI-driven development. It is not about micromanaging the model or restricting its capabilities; it is about constraining the problem space so that the output is <strong>deterministic, reviewable, and aligned with expectations</strong>.</p>
+        
+        <p>In hyperagility, clarity is not overhead—it is a safety mechanism.</p>
+      </div>
+
+      <div class="principle">
+        <h3>New Metrics</h3>
+        <p>The industry has struggled to measure developer productivity for decades, and AI has made that problem significantly harder. When code generation becomes cheap and fast, <strong>speed stops being the bottleneck</strong>—and therefore stops being the most meaningful signal.</p>
+        
+        <p>In a hyper-agile, AI-assisted environment, metrics need to shift from <em>how fast code is produced</em> to <em>how reliably value is delivered</em>.</p>
+        
+        <p>Teams should still optimize for performance, but performance now needs to be evaluated through a different lens. One of the most important new dimensions to measure is <strong>how effectively AI generates features</strong>. This includes questions such as:</p>
+        
+        <ul>
+          <li>How many iterations are required before a feature reaches an acceptable state?</li>
+          <li>How often does a feature need to be partially or fully regenerated?</li>
+          <li>How many bugs, regressions, or code smells are introduced per PR?</li>
+          <li>How frequently do AI-generated changes trigger follow-up fixes?</li>
+        </ul>
+        
+        <p>In short, hyperagility demands metrics that reward <strong>predictability, confidence, and learning</strong>, not just raw speed.</p>
+      </div>
+
+      <div class="principle">
+        <h3>Requirements Gathering in an AI-Native World</h3>
+        <p>Lately, it feels like everyone is a coder. And while it can be incredibly frustrating to see a CEO or a sales lead vibe-code a barely functional app that suddenly becomes the new top priority, this shift can also be leveraged to enormous advantage—if handled correctly.</p>
+        
+        <p>Instead of resisting non-technical stakeholders building apps, teams should <strong>encourage and enable it</strong>. Rather than having sales or business teams present wireframes, slides, or incomplete designs—which they will do anyway—they should be trained to use AI tools to generate <strong>working proof-of-concept applications</strong> that demonstrate how customer needs could be fulfilled.</p>
+        
+        <p>These applications should be treated strictly as <strong>napkin designs</strong>. They are not canonical implementations, reference architectures, or production-ready code. They are communication artifacts—far more expressive than wireframes, and far more concrete than written descriptions.</p>
+        
+        <p>In an AI-native development process, requirements gathering is no longer just about writing better tickets or clearer documents. It is about <strong>raising the fidelity of intent before implementation begins</strong>. Allowing non-technical stakeholders to express requirements through executable prototypes shortens feedback loops, improves alignment, and ultimately leads to better software—built faster, with less friction.</p>
+        
+        <p>Used correctly, AI turns requirements gathering from a translation problem into a collaboration advantage.</p>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <p>A manifesto for building software in the age of AI</p>
+    </footer>
+  </article>
+</main>
