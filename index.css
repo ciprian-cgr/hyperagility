@@ -37,6 +37,28 @@ body {
   text-align: center;
 }
 
+header {
+  background: var(--color-hero-bg);
+  border-bottom: 1px solid var(--color-border);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0 0 1rem;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+header .subtitle {
+  font-size: 1.3rem;
+  color: var(--color-text-light);
+  margin: 0;
+  font-weight: 400;
+}
+
 .hero h1 {
   font-size: 3.5rem;
   font-weight: 800;
@@ -56,6 +78,18 @@ body {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 2rem;
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+article {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 3rem 2rem;
 }
 
 .content {
@@ -163,9 +197,48 @@ li {
   font-size: 0.95rem;
 }
 
+footer {
+  margin-top: 5rem;
+  padding: 3rem 2rem 4rem;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+}
+
 .page-footer p {
-  margin: 0;
+  margin: 0 0 1.5rem;
   font-style: italic;
+}
+
+footer p {
+  margin: 0 0 1.5rem;
+  font-style: italic;
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-links a {
+  color: var(--color-text-light);
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-links a:hover {
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.social-links svg {
+  width: 24px;
+  height: 24px;
 }
 
 /* Responsive design */
@@ -242,4 +315,70 @@ li {
   h2, h3 {
     page-break-after: avoid;
   }
+}
+
+/* Pagehead styles */
+article > section:first-child {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+article > section:first-child h1 {
+  font-size: 3rem;
+  margin: 0 0 1rem 0;
+  font-weight: 800;
+}
+
+article > section:first-child p.subtitle {
+  font-size: 1.5rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* Content styles */
+article {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+article > section:first-child {
+  margin-bottom: 3rem;
+}
+
+article h1 {
+  font-size: 2.5rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+article h2 {
+  font-size: 2rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+article h3 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+article p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  color: var(--color-text-light);
+}
+
+article strong {
+  font-weight: 600;
+  color: var(--color-text);
 }

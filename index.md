@@ -1,6 +1,8 @@
 ---
 title: HyperAgility
 subtitle: A Guide to Sanity in AI-Driven Software Development
+layout: site.html
+pagehead: true
 ---
 
 # Welcome to HyperAgility, here's your guide to sanity
