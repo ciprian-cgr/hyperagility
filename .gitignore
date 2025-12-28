@@ -2,7 +2,7 @@
 dist/
 .dist/
 # generated types
-.vitepress
+cache
 # dependencies
 node_modules/
 
