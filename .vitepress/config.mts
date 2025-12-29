@@ -25,8 +25,8 @@ export default defineConfig({
 
     // Social links in header
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/hyperagility' },
-      { icon: 'x', link: 'https://x.com/hyperagility' },
+      { icon: 'github', link: 'https://github.com/ciprian-cgr/hyperagility/' },
+      { icon: 'x', link: 'https://x.com/ciprian_cgr' },
       { icon: 'linkedin', link: 'https://linkedin.com/company/hyperagility' }
     ]
   }
